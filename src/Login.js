@@ -26,7 +26,7 @@ console.log (user)
     },[])
     localStorage.setItem("Login",dataUser)
     return(
-        <div>ini login</div>
+        <div>ini Login</div>
     )
 
 }
