@@ -23,7 +23,6 @@ function Login() {
     e.preventDefault()
   };
 
-
   useEffect(() => {
     fetch("https://618e643350e24d0017ce1267.mockapi.io/user")
       .then((resp) => resp.json())
