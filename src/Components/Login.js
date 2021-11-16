@@ -1,7 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { Button, Card, Stack, } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { UserContext } from "../Context/userProvider";
 function Login() {
+  let history = useHistory()
   let { isLogin, setIsLogin } = useContext(UserContext);
   let [user, setUser] = useState({
     username: "",
@@ -17,17 +19,26 @@ function Login() {
   };
   console.log(user);
 
-  let [dataUser, setDataUser] = useState([]);
+  let [dataRegister, setDataRegiste] = useState([]);
 
   let handleLogin = (e) => {
     e.preventDefault()
+    let dataUser=  dataRegister.find(item=> item.username === user.username && item.password === user.password)
+  if(dataUser){
+    localStorage.setItem("isLogin",true)
+    setIsLogin(true)
+    history.push("/")
+  }else{
+    alert("chech username dan password anda")
+  }
   };
+  console.log(isLogin)
 
   useEffect(() => {
     fetch("https://618e643350e24d0017ce1267.mockapi.io/user")
       .then((resp) => resp.json())
-      .then((data) => setDataUser(data));
-    console.log(dataUser);
+      .then((data) => setDataRegiste(data));
+    console.log(dataRegister);
     // localStorage.setItem("Login", dataUser);
   }, []);
 
