@@ -24,6 +24,13 @@ import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 
 function App() {
+  let { isLogin, setIsLogin } = useContext(UserContext);
+  console.log(isLogin);
+
+  function LogOut() {
+    setIsLogin(false);
+    localStorage["isLogin"] = false;
+  }
   return (
     <Router>
       <Navbar bg="light" expand={false}>
