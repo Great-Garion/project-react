@@ -1,6 +1,11 @@
-function Series(){
-    return(
-<div> Series</div>
+import React from 'react'
+
+function Series() {
+    return (
+        <div>
+            
+        </div>
     )
 }
-export default  Series
+
+export default Series
