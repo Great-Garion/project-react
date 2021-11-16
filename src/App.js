@@ -22,9 +22,10 @@ import {
 } from "react-bootstrap";
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
-
+import { useContext } from "react";
+import { UserContext } from "./Context/userProvider";
 function App() {
-  let { isLogin, setIsLogin } = useContext(UserContext);
+  let { isLogin, setIsLogin } = useContext(UserContext)
   console.log(isLogin);
 
   function LogOut() {
