@@ -23,7 +23,7 @@ import {
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
-import { UserContext } from "./Context/userProvider";
+import { UserContext } from "./Context/UserProvider";
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext)
   // console.log(isLogin);
@@ -51,19 +51,22 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                  <Link to="/" className="me-5">
+                 
+                  <Link to="/" className="me-5" >
                     Home
                   </Link>
                 </Nav.Link>
                 <Nav.Link>
-                  <Link to="/Login" className="me-5">
+                  {isLogin ? <Button onClick={LogOut}>Log Out</Button> :<Link to="/Login" className="me-5">
                     Login
-                  </Link>
+                  </Link>}
+                  
                 </Nav.Link>
                 <Nav.Link>
-                  <Link to="/Register" className="me-5">
+                  {isLogin ? <></>:<Link to="/Register" className="me-5">
                     Register
-                  </Link>
+                  </Link>}
+                  
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="/Movie" className="me-5">
@@ -100,13 +103,15 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/">
+
           <Movie />
         </Route>
         <Route path="/Register">
           <Register />
         </Route>
         <Route path="/Login">
-          <Login />
+          {isLogin ? <Redirect to="/"/> : <Login /> }
+         
         </Route>
         <Route path="/Movie">
           <Movie />
