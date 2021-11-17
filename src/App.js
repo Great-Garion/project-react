@@ -57,7 +57,7 @@ function App() {
                   </Link>
                 </Nav.Link>
                 <Nav.Link>
-                  {isLogin ? <Button onClock={LogOut}>Log Out</Button> :<Link to="/Login" className="me-5">
+                  {isLogin ? <Button onClick={LogOut}>Log Out</Button> :<Link to="/Login" className="me-5">
                     Login
                   </Link>}
                   
