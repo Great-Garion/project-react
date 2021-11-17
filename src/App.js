@@ -26,7 +26,7 @@ import { useContext } from "react";
 import { UserContext } from "./Context/userProvider";
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext)
-  console.log(isLogin);
+  // console.log(isLogin);
 
   function LogOut() {
     setIsLogin(false);

@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Col, Button, Row, Container } from "react-bootstrap";
+import { useHistory } from "react-router";
+import axios from "axios";
 
 function Register() {
+  let history = useHistory();
   let [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -14,13 +17,37 @@ function Register() {
     address: "",
   });
 
-  const handleChangeLogin = (event) => {
+  let [dataApiRegis, setDataApiRegis] = useState([]);
+
+  const handleChangeRegister = (event) => {
     const { name, value } = event.target;
     setUser((preUser) => ({
       ...preUser,
       [name]: value,
     }));
   };
+
+  const submitData = () => {
+    console.log(user)
+    axios
+      .post("https://618e643350e24d0017ce1267.mockapi.io/user", { user })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        setDataApiRegis(res);
+      });
+      history.push("/Login");
+  };
+
+  const handleChangebutton = (e) => {
+    e.preventDefault();
+    const userJSON = JSON.stringify(user);
+    console.log(userJSON);
+    localStorage.setItem("user", userJSON);
+    console.log(user);
+    submitData()
+  };
+  // console.log(dataApiRegis)
   return (
     <div className="Register">
       <h3>Halaman Register</h3>
@@ -36,7 +63,7 @@ function Register() {
                 placeholder="First name"
                 value={user.firstName}
                 name="firstName"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
               />
             </Col>
           </Form.Group>
@@ -49,9 +76,9 @@ function Register() {
               <Form.Control
                 type="text"
                 placeholder="Last name"
-                value={user.firstName}
+                value={user.lastName}
                 name="lastName"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
               />
             </Col>
           </Form.Group>
@@ -65,8 +92,8 @@ function Register() {
                 type="text"
                 placeholder="Masukan username Anda"
                 value={user.username}
-                name="firstName"
-                onChange={handleChangeLogin}
+                name="username"
+                onChange={handleChangeRegister}
               />
             </Col>
           </Form.Group>
@@ -81,7 +108,7 @@ function Register() {
                 placeholder="Masukan Email Anda"
                 value={user.email}
                 name="email"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
               />
             </Col>
           </Form.Group>
@@ -95,7 +122,7 @@ function Register() {
                 type="password"
                 value={user.password}
                 name="password"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
                 placeholder="Tambahkan Password"
               />
             </Col>
@@ -110,7 +137,7 @@ function Register() {
                 type="textarea"
                 value={user.address}
                 name="address"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
                 placeholder="Tambahkan Address"
               />
             </Col>
@@ -125,7 +152,7 @@ function Register() {
                 type="date"
                 value={user.birthdate}
                 name="birthdate"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
                 placeholder="Tambahkan Birthdate"
               />
             </Col>
@@ -142,7 +169,7 @@ function Register() {
                 value="Laki-laki"
                 name="gender"
                 placeholder="gender"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
               />
 
               <Form.Check
@@ -151,12 +178,12 @@ function Register() {
                 value="Perempuan"
                 name="gender"
                 placeholder="gender"
-                onChange={handleChangeLogin}
+                onChange={handleChangeRegister}
               />
             </Col>
           </Form.Group>
 
-          <Button>Daftar</Button>
+          <Button onClick={handleChangebutton}>Daftar</Button>
         </Form>
       </Container>
     </div>
