@@ -21,8 +21,8 @@ function Register() {
 
   const handleChangeRegister = (event) => {
     const { name, value } = event.target;
-    setUser((preUser) => ({
-      ...preUser,
+    setUser((dataUser) => ({
+      ...dataUser,
       [name]: value,
     }));
   };
@@ -30,7 +30,7 @@ function Register() {
   const submitData = () => {
     console.log(user)
     axios
-      .post("https://618e643350e24d0017ce1267.mockapi.io/user", { user })
+      .post("https://618e643350e24d0017ce1267.mockapi.io/user",  user )
       .then((res) => {
         console.log(res);
         console.log(res.data);
