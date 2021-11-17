@@ -49,9 +49,9 @@ function Login() {
 
   return (
     <div>
-      <>
+      <container   className="col mt-10  mx-auto">
         <Card
-          className="col-md-5  mx-auto"
+          className="col-md-5 mt-10  mx-auto"
           border="dark"
           style={{ width: "20rem" }}
         >
@@ -60,6 +60,7 @@ function Login() {
             <Card.Title>Please Login</Card.Title>
             <Stack direction="vertical" gap={2}>
               <input
+              border="dark"
                 className="bg-light border"
                 type="text"
                 placeholder="username"
@@ -70,7 +71,7 @@ function Login() {
               />
 
               <input
-                className="bg-light border"
+                className="bg-light border mt-10"
                 type="password"
                 placeholder="password"
                 onChange={handleUser}
@@ -78,6 +79,7 @@ function Login() {
                 name="password"
                 value={user.password}
               />
+              <br/>
             </Stack>
             <Stack gap={1} className="col-md-5 mx-auto">
               <Button variant="secondary" onClick={handleLogin} type="submit">
@@ -93,7 +95,7 @@ function Login() {
             </a>
           </Card.Body>
         </Card>
-      </>
+      </container>
     </div>
   );
 }
