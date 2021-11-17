@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Button, Card, Stack, } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { UserContext } from "../Context/userProvider";
+import { UserContext } from "../Context/UserProvider";
 function Login() {
   let history = useHistory()
   let { isLogin, setIsLogin } = useContext(UserContext);
@@ -29,7 +29,7 @@ function Login() {
     setIsLogin(true)
     history.push("/")
   }else{
-    alert("chech username dan password anda")
+    alert("Data anda tidak sama dengan Data Register")
   }
   };
   console.log(isLogin)
@@ -39,20 +39,21 @@ function Login() {
       .then((resp) => resp.json())
       .then((data) => setDataRegiste(data));
     console.log(dataRegister);
-    // localStorage.setItem("Login", dataUser);
+  
   }, []);
-
-
+let dataapi= localStorage.setItem('login', dataRegister)
+let parsData=JSON.parse(dataapi)
+console.log(parsData)
 
   return (
     <div>
       <>
-        <Card border="dark" style={{ width: "18rem" }}>
+        <Card className="col-md-5  mx-auto" border="dark" style={{ width: "20rem" }} >
         
             <Card.Header>Garion Tv</Card.Header>
             <Card.Body>
               <Card.Title>Please Login</Card.Title>
-              <Stack direction="horizontal" gap={2}>
+              <Stack direction="vertical" gap={2}>
                 <input
                   className="bg-light border"
                   type="text"
@@ -79,7 +80,7 @@ function Login() {
                 </Button>
               </Stack>
 
-              <a href="#" class="card-link">
+              <a href="/Register" class="card-link">
                 Register
               </a>
               <a href="#" class="card-link">
