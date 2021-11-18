@@ -25,8 +25,8 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 function App() {
-  let { isLogin, setIsLogin } = useContext(UserContext)
-  // console.log(isLogin);
+  let { isLogin, setIsLogin, isReg, setIsReg } = useContext(UserContext);
+  console.log(isLogin);
 
   function LogOut() {
     setIsLogin(false);
@@ -34,6 +34,21 @@ function App() {
   }
   return (
     <Router>
+      {/* <Link to="/" className="me-5">
+        Home
+      </Link>
+      <Link to="/login" className="me-5">
+        Login
+      </Link>
+      <Link to="/register" className="me-5">
+        Register
+      </Link>
+      <Link to="/movie" className="me-5">
+        Movie
+      </Link>
+      <Link to="/series" className="me-5">
+        Series
+      </Link> */}
       <Navbar bg="light" expand={false}>
         <Container fluid>
           <Navbar.Brand>
@@ -101,25 +116,27 @@ function App() {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+
       <Switch>
         <Route exact path="/">
-
           <Movie />
         </Route>
-        <Route path="/Register">
-          <Register />
+        <Route path="/register">
+          {/* <Register /> */}
+          {isLogin ? <Redirect to="/login" /> : <Register />}
         </Route>
+
         <Route path="/Login">
           {isLogin ? <Redirect to="/"/> : <Login /> }
          
         </Route>
-        <Route path="/Movie">
+        <Route path="/movie">
           <Movie />
         </Route>
-        <Route path="/Series">
+        <Route path="/series">
           <Series />
         </Route>
-        <Route path="/:Alihan">
+        <Route path="/:alihan">
           <Alihan />
         </Route>
       </Switch>
