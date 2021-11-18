@@ -25,6 +25,13 @@ function Login() {
 
   console.log(dataRegister);
 
+  useEffect(() => {
+    fetch("https://618e643350e24d0017ce1267.mockapi.io/user")
+      .then((resp) => resp.json())
+      .then((data) => setDataRegister(data));
+    console.log(dataRegister);
+  }, [user]);
+
   let handleLogin = (e) => {
     e.preventDefault();
     let dataUser = dataRegister.find(
@@ -40,12 +47,6 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    fetch("https://618e643350e24d0017ce1267.mockapi.io/user")
-      .then((resp) => resp.json())
-      .then((data) => setDataRegister(data));
-    console.log(dataRegister);
-  }, []);
 
   return (
     <div>

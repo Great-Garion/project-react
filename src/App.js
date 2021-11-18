@@ -25,7 +25,7 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 function App() {
-  let { isLogin, setIsLogin } = useContext(UserContext);
+  let { isLogin, setIsLogin, isReg, setIsReg } = useContext(UserContext);
   console.log(isLogin);
 
   function LogOut() {
@@ -34,7 +34,7 @@ function App() {
   }
   return (
     <Router>
-      <Link to="/" className="me-5">
+      {/* <Link to="/" className="me-5">
         Home
       </Link>
       <Link to="/login" className="me-5">
@@ -48,8 +48,8 @@ function App() {
       </Link>
       <Link to="/series" className="me-5">
         Series
-      </Link>
-      {/* <Navbar bg="light" expand={false}>
+      </Link> */}
+      <Navbar bg="light" expand={false}>
         <Container fluid>
           <Navbar.Brand>
             <h3>Website</h3>
@@ -115,14 +115,15 @@ function App() {
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
-      </Navbar> */}
+      </Navbar>
+
       <Switch>
         <Route exact path="/">
-
           <Movie />
         </Route>
         <Route path="/register">
-          <Register />
+          {/* <Register /> */}
+          {isLogin ? <Redirect to="/login" /> : <Register />}
         </Route>
 
         <Route path="/Login">

@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Col, Button, Row, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import axios from "axios";
+import { UserContext } from "../Context/UserProvider";
 
 function Register() {
   let history = useHistory();
+  let {isReg, setIsReg} = useContext(UserContext)
   let [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -28,25 +30,24 @@ function Register() {
   };
 
   const submitData = () => {
-    console.log(user);
+    // console.log(user);
     axios
-
       .post("https://618e643350e24d0017ce1267.mockapi.io/user", user)
-
       .then((res) => {
         console.log(res);
         console.log(res.data);
         setDataApiRegis(res);
       });
     history.push("/Login");
+    setIsReg(true)
   };
 
   const handleChangebutton = (e) => {
     e.preventDefault();
-    const userJSON = JSON.stringify(user);
-    console.log(userJSON);
-    localStorage.setItem("user", userJSON);
-    console.log(user);
+    // const userJSON = JSON.stringify(user);
+    // console.log(userJSON);
+    // localStorage.setItem("user", userJSON);
+    // console.log(user);
     submitData();
   };
   // console.log(dataApiRegis)
