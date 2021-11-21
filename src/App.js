@@ -2,6 +2,7 @@ import "./App.css";
 import Movie from "./Components/Movie";
 import Register from "./Components/Register";
 import Series from "./Components/Series";
+import MovieDetail from "./Components/MovieDetail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,11 +25,10 @@ import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
+import SeriesDetail from "./Components/SeriesDetail";
 function App() {
-
-  let { isLogin, setIsLogin} = useContext(UserContext);
+  let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
-
 
   function LogOut() {
     setIsLogin(false);
@@ -53,25 +53,21 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-
                   {isLogin ? (
                     <></>
                   ) : (
                     <Link to="/Register" className="me-5">
                       Register
-
                     </Link>
                   )}
                 </Nav.Link>
 
                 <Nav.Link>
                   {isLogin ? (
-
                     <Button onClick={LogOut}>Log Out</Button>
                   ) : (
                     <Link to="/login" className="me-5">
                       Login
-
                     </Link>
                   )}
                 </Nav.Link>
@@ -128,7 +124,6 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-
           {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
 
@@ -140,12 +135,18 @@ function App() {
 
         <Route path="/movie">
           {isLogin ? <Movie /> : <Redirect to="/login" />}
-
+        </Route>
+        <Route path="/movie-detail/:id">
+          <MovieDetail />
         </Route>
 
         <Route path="/series">
           {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/series-detail/:id">
+          <SeriesDetail />
+        </Route>
+
 
         <Route path="/:alihan">
           <Alihan />

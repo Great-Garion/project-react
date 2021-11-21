@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import UserProvider from "./Context/UserProvider";
+import MovieProvider from "./Context/MovieProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <MovieProvider>
+        <App />
+      </MovieProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
