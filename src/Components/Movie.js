@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Card, CardGroup } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { MovieContext } from "../Context/MovieProvider";
 
 function Movie() {
-  const [MovieList, setMovieList] = useState([]);
+  const history = useHistory();
+  const {movieList, setMovieList} = useContext(MovieContext)
   useEffect(() => {
     axios(
-      // "https://image.tmdb.org/t/p/w500/<<img_movie>>.png"
       "https://api.themoviedb.org/3/movie/now_playing?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US&page=1"
     ).then((result) => {
       console.log(result.data);
@@ -20,7 +22,7 @@ function Movie() {
       <br />
       <CardGroup>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-          {MovieList.map((movie) => {
+          {movieList.map((movie) => {
             return (
               <div className="container">
                 <Card style={{ width: "16rem" }}>
@@ -32,7 +34,7 @@ function Movie() {
                     <Card.Title>{movie.title}</Card.Title>
                     {/* <Card.Text>Date release : {movie.release_date}</Card.Text>
                     <Card.Text>Synopsis : {movie.overview}</Card.Text> */}
-                    <Button variant="primary">Movie Detail</Button>
+                    <Button variant="primary" onClick={()=>history.push(`/movie-detail/${movie.id}`)}>More Detail</Button>
                   </Card.Body>
                 </Card>
               </div>
