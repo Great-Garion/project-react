@@ -25,7 +25,7 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 function App() {
-  let { isLogin, setIsLogin } = useContext(UserContext)
+  let { isLogin, setIsLogin } = useContext(UserContext);
   // console.log(isLogin);
 
   function LogOut() {
@@ -34,7 +34,7 @@ function App() {
   }
   return (
     <Router>
-      <Navbar bg="light" expand={false}>
+      <Navbar bg="dark" expand={false}>
         <Container fluid>
           <Navbar.Brand>
             <h3>Website</h3>
@@ -51,22 +51,27 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                 
-                  <Link to="/" className="me-5" >
+                  <Link to="/" className="me-5">
                     Home
                   </Link>
                 </Nav.Link>
                 <Nav.Link>
-                  {isLogin ? <Button onClick={LogOut}>Log Out</Button> :<Link to="/Login" className="me-5">
-                    Login
-                  </Link>}
-                  
+                  {isLogin ? (
+                    <Button onClick={LogOut}>Log Out</Button>
+                  ) : (
+                    <Link to="/Login" className="me-5">
+                      Login
+                    </Link>
+                  )}
                 </Nav.Link>
                 <Nav.Link>
-                  {isLogin ? <></>:<Link to="/Register" className="me-5">
-                    Register
-                  </Link>}
-                  
+                  {isLogin ? (
+                    <></>
+                  ) : (
+                    <Link to="/Register" className="me-5">
+                      Register
+                    </Link>
+                  )}
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="/Movie" className="me-5">
@@ -103,16 +108,12 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/">
-
           <Movie />
         </Route>
         <Route path="/Register">
           <Register />
         </Route>
-        <Route path="/Login">
-          {isLogin ? <Redirect to="/"/> : <Login /> }
-         
-        </Route>
+        <Route path="/Login">{isLogin ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/Movie">
           <Movie />
         </Route>
