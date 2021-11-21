@@ -26,7 +26,7 @@ import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import MovieDetail from "./Components/Moviedetail";
 function App() {
-  let { isLogin, setIsLogin, isReg, setIsReg } = useContext(UserContext);
+  let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
 
   function LogOut() {
@@ -35,22 +35,7 @@ function App() {
   }
   return (
     <Router>
-      {/* <Link to="/" className="me-5">
-        Home
-      </Link>
-      <Link to="/login" className="me-5">
-        Login
-      </Link>
-      <Link to="/register" className="me-5">
-        Register
-      </Link>
-      <Link to="/movie" className="me-5">
-        Movie
-      </Link>
-      <Link to="/series" className="me-5">
-        Series
-      </Link> */}
-      <Navbar bg="light" expand={false}>
+      <Navbar bg="dark" expand={false}>
         <Container fluid>
           <Navbar.Brand>
             <h3>Website</h3>
@@ -67,35 +52,51 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                  <Link to="/" className="me-5" >
+                  <Link to="/" className="me-5">
                     Home
                   </Link>
                 </Nav.Link>
 
                 <Nav.Link>
-                  {isLogin ? <Button onClick = {LogOut}> Log Out </Button> :<Link to="/Login" className="me-5">
-                    Login
-                  </Link>}                 
+                  {isLogin ? (
+                    <Button onClick={LogOut}> Log Out </Button>
+                  ) : (
+                    <Link to="/Login" className="me-5">
+                      Login
+                    </Link>
+                  )}
                 </Nav.Link>
 
                 <Nav.Link>
-                  {isLogin ? <></>:<Link to="/Register" className="me-5">
-                    Register
-                  </Link>}                 
+                  {isLogin ? (
+                    <></>
+                  ) : (
+                    <Link to="/Register" className="me-5">
+                      Register
+                    </Link>
+                  )}
                 </Nav.Link>
 
                 <Nav.Link>
-                  <Link to="/Movie" className="me-5">
-                    Movie
-                  </Link>
+                  {isLogin ? (
+                    <Link to="/Movie" className="me-5">
+                      Movie
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </Nav.Link>
-                
+
                 <Nav.Link>
-                  <Link to="/Series" className="me-5">
-                    Series
-                  </Link>
+                  {isLogin ? (
+                    <Link to="/Series" className="me-5">
+                      Series
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </Nav.Link>
-                
+
                 <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
                   <NavDropdown.Item href="#email">Email</NavDropdown.Item>
                   <NavDropdown.Item href="#instagram">
@@ -122,26 +123,27 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <Movie />
+          {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
+
         <Route path="/register">
-          {/* <Register /> */}
           {isLogin ? <Redirect to="/login" /> : <Register />}
         </Route>
 
-        <Route path="/Login">
-          {isLogin ? <Redirect to="/"/> : <Login /> }
-         
-        </Route>
+        <Route path="/login">{isLogin ? <Redirect to="/" /> : <Login />}</Route>
+
         <Route path="/movie">
-          <Movie />
+          {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
+
         <Route path="/movie-detail/:id">
           <MovieDetail />
         </Route>
+
         <Route path="/series">
-          <Series />
+          {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
+
         <Route path="/:alihan">
           <Alihan />
         </Route>
