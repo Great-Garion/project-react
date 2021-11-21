@@ -25,8 +25,10 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 function App() {
-  let { isLogin, setIsLogin } = useContext(UserContext);
-  // console.log(isLogin);
+
+  let { isLogin, setIsLogin} = useContext(UserContext);
+  console.log(isLogin);
+
 
   function LogOut() {
     setIsLogin(false);
@@ -51,47 +53,64 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                  <Link to="/" className="me-5">
-                    Home
-                  </Link>
-                </Nav.Link>
-                <Nav.Link>
-                  {isLogin ? (
-                    <Button onClick={LogOut}>Log Out</Button>
-                  ) : (
-                    <Link to="/Login" className="me-5">
-                      Login
-                    </Link>
-                  )}
-                </Nav.Link>
-                <Nav.Link>
+
                   {isLogin ? (
                     <></>
                   ) : (
                     <Link to="/Register" className="me-5">
                       Register
+
                     </Link>
                   )}
                 </Nav.Link>
+
                 <Nav.Link>
-                  <Link to="/Movie" className="me-5">
-                    Movie
-                  </Link>
+                  {isLogin ? (
+
+                    <Button onClick={LogOut}>Log Out</Button>
+                  ) : (
+                    <Link to="/login" className="me-5">
+                      Login
+
+                    </Link>
+                  )}
+                </Nav.Link>
+
+                <Nav.Link>
+                  {isLogin ? (
+                    <Link to="/Movie" className="me-5">
+                      Movie
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </Nav.Link>
                 <Nav.Link>
-                  <Link to="/Series" className="me-5">
-                    Series
-                  </Link>
+                  {isLogin ? (
+                    <Link to="/Series" className="me-5">
+                      Series
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </Nav.Link>
-                <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
-                  <NavDropdown.Item href="#email">Email</NavDropdown.Item>
-                  <NavDropdown.Item href="#instagram">
-                    Instagram
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#favebook">Facebook</NavDropdown.Item>
-                  <NavDropdown.Item href="#whatsApp">whatsApp</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                </NavDropdown>
+                {isLogin ? (
+                  <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="#email">Email</NavDropdown.Item>
+                    <NavDropdown.Item href="#instagram">
+                      Instagram
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#favebook">
+                      Facebook
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#whatsApp">
+                      whatsApp
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                  </NavDropdown>
+                ) : (
+                  <></>
+                )}
               </Nav>
               <Form className="d-flex">
                 <FormControl
@@ -106,21 +125,29 @@ function App() {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+
       <Switch>
         <Route exact path="/">
-          <Movie />
+
+          {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/Register">
-          <Register />
+
+        <Route path="/register">
+          {isLogin ? <Redirect to="/login" /> : <Register />}
         </Route>
-        <Route path="/Login">{isLogin ? <Redirect to="/" /> : <Login />}</Route>
-        <Route path="/Movie">
-          <Movie />
+
+        <Route path="/login">{isLogin ? <Redirect to="/" /> : <Login />}</Route>
+
+        <Route path="/movie">
+          {isLogin ? <Movie /> : <Redirect to="/login" />}
+
         </Route>
-        <Route path="/Series">
-          <Series />
+
+        <Route path="/series">
+          {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/:Alihan">
+
+        <Route path="/:alihan">
           <Alihan />
         </Route>
       </Switch>
