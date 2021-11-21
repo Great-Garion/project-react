@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Card, CardGroup } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 function Series() {
   const [SeriesList, setSeriesList] = useState([]);
+  let history = useHistory();
   useEffect(() => {
     axios(
       "https://api.themoviedb.org/3/tv/on_the_air?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US&page=1"
@@ -33,7 +35,7 @@ function Series() {
                       Date release : {series.first_air_date}
                     </Card.Text>
                     <Card.Text>Synopsis : {series.overview}</Card.Text> */}
-                    <Button variant="primary">Series Detail</Button>
+                    <Button variant="primary" onClick={()=>history.push(`/series-detail/${series.id}`)}>More Detail</Button>
                   </Card.Body>
                 </Card>
               </div>

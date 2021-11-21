@@ -2,6 +2,7 @@ import "./App.css";
 import Movie from "./Components/Movie";
 import Register from "./Components/Register";
 import Series from "./Components/Series";
+import MovieDetail from "./Components/MovieDetail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +26,7 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import MovieDetail from "./Components/Moviedetail";
+import SeriesDetail from "./Components/SeriesDetail";
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
@@ -61,18 +63,18 @@ function App() {
                   {isLogin ? (
                     <Button onClick={LogOut}> Log Out </Button>
                   ) : (
-                    <Link to="/Login" className="me-5">
-                      Login
+                    <Link to="/Register" className="me-5">
+                      Register
                     </Link>
                   )}
                 </Nav.Link>
 
                 <Nav.Link>
                   {isLogin ? (
-                    <></>
+                    <Button onClick={LogOut}>Log Out</Button>
                   ) : (
-                    <Link to="/Register" className="me-5">
-                      Register
+                    <Link to="/login" className="me-5">
+                      Login
                     </Link>
                   )}
                 </Nav.Link>
@@ -142,6 +144,9 @@ function App() {
 
         <Route path="/series">
           {isLogin ? <Series /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/series-detail/:id">
+          <SeriesDetail />
         </Route>
 
         <Route path="/:alihan">

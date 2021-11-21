@@ -1,19 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router";
 import { Card } from "react-bootstrap";
-function MovieDetail() {
+
+
+
+function SeriesDetail() {
+  let [series, setSeries] = useState([]);
   let { id } = useParams();
-  let [movie, setMovie] = useState([]);
   useEffect(() => {
     axios(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US`
     ).then((rest) => {
       console.log(rest.data);
-      setMovie(rest.data);
+      setSeries(rest.data);
     });
   }, []);
-  console.log(movie);
+  console.log(series);
+
   return (
     <div>
       <Card
@@ -21,18 +25,18 @@ function MovieDetail() {
         style={{ width: "50%", height: "50%" }}
       >
         <Card.Img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
           alt="Card image"
         />
         <Card.ImgOverlay>
-          <Card.Title>{movie.original_title}</Card.Title>
-          <Card.Text>{movie.overview}</Card.Text>
-          <Card.Text>status : {movie.status}</Card.Text>
-          <Card.Text>Release : {movie.release_date}</Card.Text>
+        <Card.Title>{series.original_title}</Card.Title>
+          <Card.Text>{series.overview}</Card.Text>
+          <Card.Text>Status Series : {series.status}</Card.Text>
+          <Card.Text>Release Series : {series.release_date}</Card.Text>
           <Card.Text>
             {" "}
             Genre :{" "}
-            {movie.genres?.map((item) => {
+            {series.genres?.map((item) => {
               return <h6>{item.name}</h6>;
             })}
           </Card.Text>
@@ -41,4 +45,6 @@ function MovieDetail() {
     </div>
   );
 }
-export default MovieDetail;
+
+
+export default SeriesDetail;
