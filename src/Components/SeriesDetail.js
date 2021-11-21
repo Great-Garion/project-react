@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Card } from "react-bootstrap";
 
 
+
 function SeriesDetail() {
   let [series, setSeries] = useState([]);
   let { id } = useParams();
@@ -30,8 +31,8 @@ function SeriesDetail() {
         <Card.ImgOverlay>
         <Card.Title>{series.original_title}</Card.Title>
           <Card.Text>{series.overview}</Card.Text>
-          <Card.Text>Status : {series.status}</Card.Text>
-          <Card.Text>Release : {series.release_date}</Card.Text>
+          <Card.Text>Status Series : {series.status}</Card.Text>
+          <Card.Text>Release Series : {series.release_date}</Card.Text>
           <Card.Text>
             {" "}
             Genre :{" "}
@@ -44,5 +45,6 @@ function SeriesDetail() {
     </div>
   );
 }
+
 
 export default SeriesDetail;
