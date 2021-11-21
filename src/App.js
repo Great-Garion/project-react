@@ -24,6 +24,7 @@ import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
+import MovieDetail from "./Components/Moviedetail";
 function App() {
   let { isLogin, setIsLogin, isReg, setIsReg } = useContext(UserContext);
   console.log(isLogin);
@@ -66,33 +67,35 @@ function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
-                 
                   <Link to="/" className="me-5" >
                     Home
                   </Link>
                 </Nav.Link>
+
                 <Nav.Link>
-                  {isLogin ? <Button onClick={LogOut}>Log Out</Button> :<Link to="/Login" className="me-5">
+                  {isLogin ? <Button onClick = {LogOut}> Log Out </Button> :<Link to="/Login" className="me-5">
                     Login
-                  </Link>}
-                  
+                  </Link>}                 
                 </Nav.Link>
+
                 <Nav.Link>
                   {isLogin ? <></>:<Link to="/Register" className="me-5">
                     Register
-                  </Link>}
-                  
+                  </Link>}                 
                 </Nav.Link>
+
                 <Nav.Link>
                   <Link to="/Movie" className="me-5">
                     Movie
                   </Link>
                 </Nav.Link>
+                
                 <Nav.Link>
                   <Link to="/Series" className="me-5">
                     Series
                   </Link>
                 </Nav.Link>
+                
                 <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
                   <NavDropdown.Item href="#email">Email</NavDropdown.Item>
                   <NavDropdown.Item href="#instagram">
@@ -132,6 +135,9 @@ function App() {
         </Route>
         <Route path="/movie">
           <Movie />
+        </Route>
+        <Route path="/movie-detail/:id">
+          <MovieDetail />
         </Route>
         <Route path="/series">
           <Series />
