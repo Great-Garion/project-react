@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { Button, Card, Stack } from "react-bootstrap";
+import { Button, Card, Stack,Row,Container,Col, } from "react-bootstrap";
+import { traverseTwoPhase } from "react-dom/test-utils";
 import { useHistory } from "react-router";
 import { UserContext } from "../Context/UserProvider";
 
@@ -49,20 +50,21 @@ function Login() {
 
 
   return (
-    <div>
-      <container   className="col mt-10  mx-auto">
-        <Card
-          className="col-md-5 mt-10  mx-auto"
-          border="dark"
-          style={{ width: "20rem" }}
-        >
-          <Card.Header>Garion Tv</Card.Header>
-          <Card.Body>
+    <div style={{ backgroundColor:"gray", height:"100vh", width:"100%" }} >
+       <Container>
+         <Row >
+          <Col className="mx-auto" xs={5}
+        
+          >
+          
+          <Card.Body style={{marginTop:"50px"}}>
+          <Card.Title style={{textAlign:"center"}}><h2 style={{marginTop:"72px"}}>Garion_TV</h2></Card.Title>
             <Card.Title>Please Login</Card.Title>
-            <Stack direction="vertical" gap={2}>
+            <Stack direction="vertical" gap={2}
+           >
               <input
               border="dark"
-                className="bg-light border"
+                className="bg-light border mt-10"
                 type="text"
                 placeholder="username"
                 onChange={handleUser}
@@ -72,6 +74,7 @@ function Login() {
               />
 
               <input
+               
                 className="bg-light border mt-10"
                 type="password"
                 placeholder="password"
@@ -82,21 +85,26 @@ function Login() {
               />
               <br/>
             </Stack>
-            <Stack gap={1} className="col-md-5 mx-auto">
-              <Button variant="secondary" onClick={handleLogin} type="submit">
+            <Stack gap={1} className="col-md-5 mx-auto rounded-pill">
+              <Button variant="dark" onClick={handleLogin} type="submit">
                 Login
               </Button>
             </Stack>
-
-            <a href="/Register" className="card-link">
+<div style={{textAlign:"center", marginTop:"4px"}}>
+<a href="/Register" style={{color:"green"}} >
               Register
             </a>
-            <a href="#" className="card-link">
-              forget passwoard
-            </a>
+            </div>
+          
+
+          
           </Card.Body>
-        </Card>
-      </container>
+          </Col>
+          </Row>
+      </Container>
+
+
+    
     </div>
   );
 }

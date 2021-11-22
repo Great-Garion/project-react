@@ -2,6 +2,7 @@ import "./App.css";
 import Movie from "./Components/Movie";
 import Register from "./Components/Register";
 import Series from "./Components/Series";
+import MovieDetail from "./Components/MovieDetail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,8 +25,12 @@ import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
+import SeriesDetail from "./Components/SeriesDetail";
+
+
+
 function App() {
-  let { isLogin, setIsLogin} = useContext(UserContext);
+  let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
 
   function LogOut() {
@@ -34,10 +39,10 @@ function App() {
   }
   return (
     <Router>
-      <Navbar bg="light" expand={false}>
+      <Navbar fixed="top" bg="light" expand={false}>
         <Container fluid>
           <Navbar.Brand>
-            <h3>Website</h3>
+            <h2>Garion_TV</h2>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
@@ -46,7 +51,9 @@ function App() {
             placement="end"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+              <Offcanvas.Title id="offcanvasNavbarLabel">
+                Garion_TV
+              </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -106,15 +113,6 @@ function App() {
                   <></>
                 )}
               </Nav>
-              <Form className="d-flex">
-                <FormControl
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-              </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
@@ -134,11 +132,20 @@ function App() {
         <Route path="/movie">
           {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/movie-detail/:id">
+          <MovieDetail />
+        </Route>
 
         <Route path="/series">
           {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/series-detail/:id">
+       <SeriesDetail/>
+        </Route>
 
+        <Route path="/movie-detail/:id">
+          <MovieDetail />
+        </Route>
         <Route path="/:alihan">
           <Alihan />
         </Route>
