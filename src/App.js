@@ -25,7 +25,6 @@ import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
-import MovieDetail from "./Components/Moviedetail";
 import SeriesDetail from "./Components/SeriesDetail";
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
