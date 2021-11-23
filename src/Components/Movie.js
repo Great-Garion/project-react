@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
 
+
 import { useHistory } from "react-router";
 import { MovieContext } from "../Context/MovieProvider";
 import {
@@ -17,6 +18,7 @@ function Movie() {
   let { movieList, setMovieList } = useContext(MovieContext);
   let history = useHistory();
 
+
   useEffect(() => {
     axios(
       "https://api.themoviedb.org/3/movie/now_playing?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US&page=1"
@@ -25,6 +27,7 @@ function Movie() {
       setMovieList(result.data?.results);
     });
   }, []);
+
 
   return (
     <div style={{ backgroundColor: "#000000c4" }}>
@@ -120,7 +123,12 @@ function Movie() {
             </div>
           );
         })}
+<<<<<<< HEAD
       </div> 
+=======
+      </div>
+
+>>>>>>> 84ba93df42ceb927163c17171b3cf4cd86a71897
     </div>
   );
 }
