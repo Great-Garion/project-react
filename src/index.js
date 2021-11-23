@@ -9,11 +9,14 @@ import MovieProvider from "./Context/MovieProvider";
 
 ReactDOM.render(
   <React.StrictMode>
+    <MovieProvider>
     <UserProvider>
       <MovieProvider>
         <App />
       </MovieProvider>
     </UserProvider>
+    </MovieProvider>
+   
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+
+
 export let MovieContext = createContext();
 
 function MovieProvider(props) {
@@ -14,4 +16,7 @@ function MovieProvider(props) {
   );
 }
 
+
+
 export default MovieProvider;
+
