@@ -28,7 +28,6 @@ import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
 
 
-
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
@@ -39,7 +38,9 @@ function App() {
   }
   return (
     <Router>
+
       <Navbar fixed="top" bg="light" expand={false}>
+
         <Container fluid>
           <Navbar.Brand>
             <h2>Garion_TV</h2>
@@ -140,8 +141,11 @@ function App() {
           {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
         <Route path="/series-detail/:id">
-       <SeriesDetail/>
+
+          <SeriesDetail />
         </Route>
+
+
 
         <Route path="/movie-detail/:id">
           <MovieDetail />

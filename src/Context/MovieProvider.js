@@ -16,5 +16,7 @@ function MovieProvider(props) {
   );
 }
 
+
+
 export default MovieProvider;
 

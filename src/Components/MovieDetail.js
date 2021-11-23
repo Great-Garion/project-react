@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+
 import { Card,Container,Row,Col } from "react-bootstrap";
+
 function MovieDetail() {
   let { id } = useParams();
   let [movie, setMovie] = useState([]);
@@ -16,6 +18,7 @@ function MovieDetail() {
   console.log(movie);
   return (
     <div>
+
 
 <Container>
   <Row>
@@ -58,6 +61,7 @@ function MovieDetail() {
 
 
 {/* 
+
       <Card
         className="bg-dark text-white"
         style={{ width: "50%", height: "50%" }}
@@ -79,7 +83,9 @@ function MovieDetail() {
             })}
           </Card.Text>
         </Card.ImgOverlay>
+
       </Card> */}
+
     </div>
   );
 }
