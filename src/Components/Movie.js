@@ -2,17 +2,11 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { MovieContext } from "../Context/MovieProvider";
-import {
-  Card,
-  Button,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Card, Button, Row, Col, Placeholder } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 function Movie() {
   let { movieList, setMovieList } = useContext(MovieContext);
   let history = useHistory();
-
 
   useEffect(() => {
     axios(
@@ -24,15 +18,55 @@ function Movie() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#000000c4" }}>
+    <div style={{ backgroundColor: "#EEC4C4" }}>
+      <Carousel fade>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={movieList.backdrop_path}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={`https://image.tmdb.org/t/p/w500${movieList.backdrop_path}`}
+            alt="Second slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={movieList.backdrop_path}
+            alt="Third slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
       <div
-        className="d-flex align-content-center flex-wrap bd-highlight example-parent "
-        style={{ marginTop: "60px" }}
+        className="d-flex align-content-center flex-wrap bd-highlight example-parent"
+        style={{ marginTop: "60px"}}
       >
         {movieList.map((item) => {
           return (
             <div style={{ padding: "8px", margin: "auto" }}>
-              <Row xs={2} md={4} className="g-1  ">
+              <Row xs={2} md={4} className="g-1">
                 <Col>
                   <Card
                     style={{
@@ -49,8 +83,8 @@ function Movie() {
                     <div style={{ margin: "auto", width: "16rem" }}>
                       <Card.Body
                         style={{
-                          backgroundColor: "#399562",
-                          color: "#f9fafb",
+                          backgroundColor: "#5C848E",
+                          color: "black",
                           fontFamily: "cursive",
                           height: "11rem",
                         }}
@@ -61,8 +95,7 @@ function Movie() {
                         <Card.Text>
                           <h6>release_date : {item.release_date}</h6>
                         </Card.Text>
-                        <Button
-                          variant="danger"
+                        <Button style={{backgroundColor: "#D291BC"}}
                           onClick={() =>
                             history.push(`/movie-detail/${item.id}`)
                           }

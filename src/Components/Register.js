@@ -48,10 +48,11 @@ function Register() {
   };
   // console.log(dataApiRegis)
   return (
-    <div className="Register">
+    <div className="Register" style={{marginTop: "7rem", marginBottom: "2rem"}}>
       <Container style={{width: "50%"}}>
         <Form>
           <h3 style={{textAlign: "center"}}>Register</h3>
+
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
               FirstName
