@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Card, Container, Row, Col } from "react-bootstrap";
+
 function MovieDetail() {
   let { id } = useParams();
   let [movie, setMovie] = useState([]);
@@ -13,7 +14,7 @@ function MovieDetail() {
     });
   }, []);
   console.log(movie);
-  // console.log(`https://image.tmdb.org/t/p/w500${movie.poster_path}`)
+  
   return (
     <div style={{ backgroundColor: "#F5C0C0", height: "119vh", width: "100%" }}>
       <Container>
