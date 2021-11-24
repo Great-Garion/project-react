@@ -55,7 +55,8 @@ function Register() {
     <div className="Register">
       <h3>Halaman Register</h3>
       <Container>
-        <Form>
+        <Form 
+        >
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
               FirstName
