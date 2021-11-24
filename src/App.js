@@ -15,9 +15,7 @@ import {
   Container,
   Navbar,
   Nav,
-  Form,
   Offcanvas,
-  FormControl,
   Button,
   NavDropdown,
 } from "react-bootstrap";
@@ -26,7 +24,6 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
-
 
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
@@ -38,10 +35,8 @@ function App() {
   }
   return (
     <Router>
-
-      <Navbar fixed="top" bg="light" expand={false}>
-
-        <Container fluid>
+      <Navbar fixed="top" bg="light" expand={false} style={{padding: "0px"}}>
+        <Container fluid style={{backgroundColor: "#93B5C6"}}>
           <Navbar.Brand>
             <h2>Garion_TV</h2>
           </Navbar.Brand>
@@ -51,12 +46,12 @@ function App() {
             aria-labelledby="offcanvasNavbarLabel"
             placement="end"
           >
-            <Offcanvas.Header closeButton>
+            <Offcanvas.Header closeButton style={{backgroundColor:"#E4D8DC"}}>
               <Offcanvas.Title id="offcanvasNavbarLabel">
                 Garion_TV
               </Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body style={{backgroundColor:"#93B5C6"}}>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link>
                   <Link to="/" className="me-5">
@@ -66,7 +61,7 @@ function App() {
 
                 <Nav.Link>
                   {isLogin ? (
-                    <Button onClick={LogOut}> Log Out </Button>
+                    <></>
                   ) : (
                     <Link to="/Register" className="me-5">
                       Register
@@ -135,7 +130,7 @@ function App() {
         </Route>
 
         <Route path="/movie-detail/:id">
-          <MovieDetail />
+         <MovieDetail />
         </Route>
 
         <Route path="/series">
