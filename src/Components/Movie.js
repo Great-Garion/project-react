@@ -30,9 +30,7 @@ function Movie() {
 
   return (
     <div style={{ backgroundColor: "#000000c4" }}>
-      <Carousel fade
-      style={{marginTop:"7vw"}}
-      >
+      <Carousel fade style={{ marginTop: "7vw" }}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -76,7 +74,7 @@ function Movie() {
         className="d-flex align-content-center flex-wrap bd-highlight example-parent "
         style={{ marginTop: "60px" }}
       >
-        {movieList.map((item,index) => {
+        {movieList.map((item, index) => {
           return (
             <div key={index} style={{ padding: "8px", margin: "auto" }}>
               <Row xs={2} md={4} className="g-1  ">
