@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
 
-
 import { useHistory } from "react-router";
 import { MovieContext } from "../Context/MovieProvider";
 import {
@@ -11,14 +10,15 @@ import {
   Row,
   Col,
   Placeholder,
-
 } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 function Movie() {
   let { movieList, setMovieList } = useContext(MovieContext);
   let history = useHistory();
-
-
+  console.log(movieList);
+  console.log(movieList[0]);
+  console.log(movieList[0]?.backdrop_path);
+  console.log(`https://image.tmdb.org/t/p/w500${movieList[0]?.backdrop_path}`);
   useEffect(() => {
     axios(
       "https://api.themoviedb.org/3/movie/now_playing?api_key=6591eb1ed775a26d3cfbb3f9fb54272c&language=en-US&page=1"
@@ -28,25 +28,26 @@ function Movie() {
     });
   }, []);
 
-
   return (
     <div style={{ backgroundColor: "#000000c4" }}>
-      <Carousel fade>
+      <Carousel fade
+      style={{marginTop:"7vw"}}
+      >
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={movieList.backdrop_path}
+            src={`https://image.tmdb.org/t/p/original${movieList[1]?.backdrop_path}`}
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            a<h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/w500${movieList.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${movieList[3]?.backdrop_path}`}
             alt="Second slide"
           />
 
@@ -58,7 +59,7 @@ function Movie() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={movieList.backdrop_path}
+            src={`https://image.tmdb.org/t/p/original${movieList[4]?.backdrop_path}`}
             alt="Third slide"
           />
 
@@ -71,13 +72,13 @@ function Movie() {
         </Carousel.Item>
       </Carousel>
 
-       <div
+      <div
         className="d-flex align-content-center flex-wrap bd-highlight example-parent "
         style={{ marginTop: "60px" }}
       >
-        {movieList.map((item) => {
+        {movieList.map((item,index) => {
           return (
-            <div style={{ padding: "8px", margin: "auto" }}>
+            <div key={index} style={{ padding: "8px", margin: "auto" }}>
               <Row xs={2} md={4} className="g-1  ">
                 <Col>
                   <Card
@@ -123,12 +124,7 @@ function Movie() {
             </div>
           );
         })}
-<<<<<<< HEAD
-      </div> 
-=======
       </div>
-
->>>>>>> 84ba93df42ceb927163c17171b3cf4cd86a71897
     </div>
   );
 }
