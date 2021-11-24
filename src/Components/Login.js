@@ -4,7 +4,6 @@ import { traverseTwoPhase } from "react-dom/test-utils";
 import { useHistory } from "react-router";
 import { UserContext } from "../Context/UserProvider";
 import "../Components/Login.css"
-import GoogleLogin  from "react-google-login";
 function Login() {
   let history = useHistory();
   let [dataRegister, setDataRegister] = useState([]);
