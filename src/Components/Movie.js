@@ -106,6 +106,7 @@ function Movie() {
                         <Card.Text>
                           <h6>release_date : {item.release_date}</h6>
                         </Card.Text>
+                        <div>
                         <Button
                           variant="danger"
                           onClick={() =>
@@ -114,6 +115,8 @@ function Movie() {
                         >
                           More Detail
                         </Button>
+                        </div>
+                       
                       </Card.Body>
                     </div>
                   </Card>
