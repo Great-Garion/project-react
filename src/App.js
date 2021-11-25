@@ -2,7 +2,6 @@ import "./App.css";
 import Movie from "./Components/Movie";
 import Register from "./Components/Register";
 import Series from "./Components/Series";
-import MovieDetail from "./Components/MovieDetail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +16,7 @@ import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
+import MovieeDetail from "./Components/MovieeDetail";
 
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
@@ -78,7 +78,7 @@ function App() {
         </Route>
 
         <Route path="/movie-detail/:id">
-          <MovieDetail />
+         <MovieeDetail />
         </Route>
 
         <Route path="/series">
@@ -89,7 +89,7 @@ function App() {
         </Route>
 
         <Route path="/movie-detail/:id">
-          <MovieDetail />
+          <MovieeDetail />
         </Route>
         <Route path="/:alihan">
           <Alihan />
