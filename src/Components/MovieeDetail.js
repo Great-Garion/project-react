@@ -19,7 +19,7 @@ function MovieeDetail() {
     <div style={{ backgroundColor: "#F5C0C0", height: "119vh", width: "100%" }}>
       <Container>
         <Row className="mt-10">
-          <Col xs={6} md={4}>
+          <Col >
             <Card style={{ width: "15rem", margin: "5rem", border: "none" }}>
               <div>
                 <Card.Img
@@ -30,7 +30,7 @@ function MovieeDetail() {
               </div>
             </Card>
           </Col>
-          <Col xs={12} md={8} style={{ marginTop: "5rem" }}>
+          <Col style={{ marginTop: "5rem" }}>
             <div>
               <Card.Title>{movie.original_title}</Card.Title>
               <Card.Text>{movie.overview}</Card.Text>

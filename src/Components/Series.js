@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { MovieContext } from "../Context/MovieProvider";
+
 
 function Series() {
-  const [SeriesList, setSeriesList] = useState([]);
+  const {seriesList, setSeriesList} =  useContext(MovieContext);
   let history = useHistory();
   useEffect(() => {
     axios(
@@ -14,14 +16,14 @@ function Series() {
       setSeriesList(result.data?.results);
     });
   }, []);
-  console.log(SeriesList);
+  console.log(seriesList);
   return (
     <div style={{ backgroundColor: "#EEC4C4" }}>
       <div
         className="d-flex align-content-center flex-wrap bd-highlight example-parent"
         style={{ marginTop: "60px" }}
       >
-        {SeriesList.map((item) => {
+        {seriesList.map((item) => {
           return (
             <div style={{ padding: "8px", margin: "auto" }}>
               <Row xs={2} md={4} className="g-1">

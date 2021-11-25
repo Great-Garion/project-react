@@ -26,8 +26,8 @@ function Movie() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#000000c4" }}>
-      <Carousel fade style={{ marginTop: "7vw" }}>
+    <div style={{ backgroundColor: "#EEC4C4" }}>
+      {/* <Carousel fade style={{ marginTop: "7vw" }}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -65,7 +65,7 @@ function Movie() {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>
+      </Carousel> */}
 
       <div
         className="d-flex align-content-center flex-wrap bd-highlight example-parent "
@@ -99,6 +99,7 @@ function Movie() {
                       >
                         <Card.Title><b>{item.title}</b></Card.Title>
                         <Card.Text>{item.release_date}</Card.Text>
+                        <div className="">
                         <Button
                           style={{ backgroundColor: "#D291BC" }}
                           onClick={() =>
@@ -107,6 +108,7 @@ function Movie() {
                         >
                           More Detail
                         </Button>
+                        </div>
                       </Card.Body>
                     </div>
                   </Card>

@@ -17,7 +17,8 @@ import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
 import MovieeDetail from "./Components/MovieeDetail";
-
+import Home from "./Components/Home";
+import Logo from "./logo.png"
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
@@ -30,41 +31,38 @@ function App() {
     <Router>
       <Navbar
         fixed="top"
-        style={{ padding: "0px", backgroundColor: "#93B5C6" }}
+        style={{ padding: "0px", backgroundColor: "#93B5C6"}}
       >
         <Container>
-          <Navbar.Brand>Garion TV</Navbar.Brand>
-          <Nav>
-            {/* <Nav.Link>
-              <Link to="/">Home</Link>
-            </Nav.Link> */}
-
+          <Navbar.Brand className="logo"><img src={Logo} style={{width: "5rem"}}/></Navbar.Brand>
+          <Nav className= "justify-content-center" style ={{width: "100%"}}>
             <Nav.Link>
-              {isLogin ? <Link to="/Movie">Movie</Link> : <></>}
+              {isLogin ? <Link to="/Movie" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Movie</Link> : <></>}
             </Nav.Link>
 
             <Nav.Link>
-              {isLogin ? <Link to="/Series">Series</Link> : <></>}
-            </Nav.Link>
-
-            <Nav.Link>
-              {isLogin ? <></> : <Link to="/Register">Register</Link>}
-            </Nav.Link>
-
-            <Nav.Link>
-              {isLogin ? (
-                <Button onClick={LogOut}>Log Out</Button>
-              ) : (
-                <Link to="/login">Login</Link>
-              )}
+              {isLogin ? <Link to="/Series" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Series</Link> : <></>}
             </Nav.Link>
           </Nav>
         </Container>
+        <Nav>
+        {/* <Nav.Link><Button variant= "dark">
+              {isLogin ?  : <Link  to="/Register" style={{textDecoration:"none"}}>Register</Link>}</Button>
+            </Nav.Link> */}
+
+            <Nav.Link> <Button variant= "danger">
+              {isLogin ? (
+                <Button  variant= "danger" className= "justify-content-end" style={{width: "100%"}} onClick={LogOut}>Keluar</Button>
+              ) : (
+                <Link to="/login" style={{textDecoration:"none", color: "white"}}>Masuk</Link>
+              )}</Button>
+            </Nav.Link>
+        </Nav>
       </Navbar>
 
       <Switch>
         <Route exact path="/">
-          {isLogin ? <Movie /> : <Redirect to="/login" />}
+          {isLogin ? <Home /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/register">
