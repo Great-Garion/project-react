@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { Button, Card, Stack, Row, Container, Col } from "react-bootstrap";
-import { traverseTwoPhase } from "react-dom/test-utils";
 import { useHistory } from "react-router";
 import { UserContext } from "../Context/UserProvider";
-import "../Components/Login.css"
+import "../Components/styling.css"
 function Login() {
   let history = useHistory();
   let [dataRegister, setDataRegister] = useState([]);

@@ -18,50 +18,11 @@ function Movie() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#EEC4C4" }}>
-      <Carousel fade>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={movieList.backdrop_path}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/w500${movieList.backdrop_path}`}
-            alt="Second slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={movieList.backdrop_path}
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+    <div>
 
       <div
         className="d-flex align-content-center flex-wrap bd-highlight example-parent"
-        style={{ marginTop: "60px"}}
+        style={{ marginTop: "60px" }}
       >
         {movieList.map((item) => {
           return (
@@ -89,13 +50,10 @@ function Movie() {
                           height: "11rem",
                         }}
                       >
-                        <Card.Title>
-                          <h6>Title : {item.title}</h6>
-                        </Card.Title>
-                        <Card.Text>
-                          <h6>release_date : {item.release_date}</h6>
-                        </Card.Text>
-                        <Button style={{backgroundColor: "#D291BC"}}
+                        <Card.Title><b>{item.title}</b></Card.Title>
+                        <Card.Text>{item.release_date}</Card.Text>
+                        <Button
+                          style={{ backgroundColor: "#D291BC" }}
                           onClick={() =>
                             history.push(`/movie-detail/${item.id}`)
                           }

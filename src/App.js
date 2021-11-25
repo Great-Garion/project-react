@@ -11,14 +11,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Offcanvas,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
@@ -35,82 +28,37 @@ function App() {
   }
   return (
     <Router>
-      <Navbar fixed="top" bg="light" expand={false} style={{padding: "0px"}}>
-        <Container fluid style={{backgroundColor: "#93B5C6"}}>
-          <Navbar.Brand>
-            <h2>Garion_TV</h2>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar" />
-          <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
-          >
-            <Offcanvas.Header closeButton style={{backgroundColor:"#E4D8DC"}}>
-              <Offcanvas.Title id="offcanvasNavbarLabel">
-                Garion_TV
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body style={{backgroundColor:"#93B5C6"}}>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link>
-                  <Link to="/" className="me-5">
-                    Home
-                  </Link>
-                </Nav.Link>
+      <Navbar
+        fixed="top"
+        style={{ padding: "0px", backgroundColor: "#93B5C6" }}
+      >
+        <Container>
+          <Navbar.Brand>Garion TV</Navbar.Brand>
+          <Nav>
+            {/* <Nav.Link>
+              <Link to="/">Home</Link>
+            </Nav.Link> */}
 
-                <Nav.Link>
-                  {isLogin ? (
-                    <></>
-                  ) : (
-                    <Link to="/Register" className="me-5">
-                      Register
-                    </Link>
-                  )}
-                </Nav.Link>
+            <Nav.Link>
+              {isLogin ? <Link to="/Movie">Movie</Link> : <></>}
+            </Nav.Link>
 
-                <Nav.Link>
-                  {isLogin ? (
-                    <Button onClick={LogOut}>Log Out</Button>
-                  ) : (
-                    <Link to="/login" className="me-5">
-                      Login
-                    </Link>
-                  )}
-                </Nav.Link>
+            <Nav.Link>
+              {isLogin ? <Link to="/Series">Series</Link> : <></>}
+            </Nav.Link>
 
-                <Nav.Link>
-                  {isLogin ? (
-                    <Link to="/Movie" className="me-5">
-                      Movie
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
-                </Nav.Link>
+            <Nav.Link>
+              {isLogin ? <></> : <Link to="/Register">Register</Link>}
+            </Nav.Link>
 
-                <Nav.Link>
-                  {isLogin ? (
-                    <Link to="/Series" className="me-5">
-                      Series
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
-                </Nav.Link>
-
-                <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
-                  <NavDropdown.Item href="#email">Email</NavDropdown.Item>
-                  <NavDropdown.Item href="#instagram">
-                    Instagram
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#favebook">Facebook</NavDropdown.Item>
-                  <NavDropdown.Item href="#whatsApp">whatsApp</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                </NavDropdown>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
+            <Nav.Link>
+              {isLogin ? (
+                <Button onClick={LogOut}>Log Out</Button>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
 
@@ -130,18 +78,15 @@ function App() {
         </Route>
 
         <Route path="/movie-detail/:id">
-         <MovieDetail />
+          <MovieDetail />
         </Route>
 
         <Route path="/series">
           {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
         <Route path="/series-detail/:id">
-
           <SeriesDetail />
         </Route>
-
-
 
         <Route path="/movie-detail/:id">
           <MovieDetail />
