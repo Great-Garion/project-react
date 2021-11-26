@@ -1,6 +1,7 @@
 import { MovieContext } from "../Context/MovieProvider";
 import { useContext, useEffect } from "react";
 import axios from "axios";
+import { Carousel } from "react-bootstrap";
 
 function Home() {
   let { movieList, setMovieList } = useContext(MovieContext);
@@ -26,7 +27,7 @@ function Home() {
   return (
     <div>
       {/* <h2>Selamat Datang</h2> */}
-      <div
+      {/* <div
         id="carouselExampleSlidesOnly"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -69,7 +70,31 @@ function Home() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
+
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={`https://image.tmdb.org/t/p/original${movieList[1]?.backdrop_path}`}
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={`https://image.tmdb.org/t/p/original${movieList[2]?.backdrop_path}`}
+            alt="Second slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={`https://image.tmdb.org/t/p/original${movieList[3]?.backdrop_path}`}
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

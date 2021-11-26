@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 import { UserContext } from "../Context/UserProvider";
@@ -23,62 +23,57 @@ function Navigasi() {
 
   return (
     <Navbar expand="lg" style={{ backgroundColor: "#93B5C6" }}>
-      {/* <Container> */}
-      <Navbar.Brand className="logo">
-        <img src={Logo} style={{ width: "5rem" }} />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ms-auto">
-          {/* movie */}
+      <Container fluid>
+        <Navbar.Brand className="logo">
+          <img src={Logo} style={{ width: "5rem" }} alt="logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto">
+            {/* movie */}
+            <Nav.Link>
+              {isLogin && (
+                <Link
+                  to="/movie"
+                  className="fs-4"
+                  style={{
+                    textDecoration: "none",
+                    color: "blue",
+                    padding: "0 10vw",
+                  }}
+                >
+                  Movie
+                </Link>
+              )}
+            </Nav.Link>
 
-          <Nav.Link>
-            {isLogin && (
-              <Link
-                to="/movie"
-                className="fs-4"
-                style={{
-                  textDecoration: "none",
-                  color: "blue",
-                  // paddingRight: "200px",
-                }}
-              >
-                Movie
-              </Link>
-            )}
-          </Nav.Link>
+            {/* serries */}
+            <Nav.Link>
+              {isLogin && (
+                <Link
+                  to="/series"
+                  className="fs-4"
+                  style={{
+                    textDecoration: "none",
+                    color: "blue",
+                    padding: "0 10vw",
+                  }}
+                >
+                  Series
+                </Link>
+              )}
+            </Nav.Link>
+          </Nav>
 
-          {/* serries */}
-          <Nav.Link>
-            {isLogin && (
-              <Link
-                to="/series"
-                className="fs-4"
-                style={{
-                  textDecoration: "none",
-                  color: "blue",
-                  marginLeft: "300px",
-                }}
-              >
-                Series
-              </Link>
-            )}
-          </Nav.Link>
-
-          {/* keluar */}
-          <Nav.Link>
-            <Button
-              variant="danger"
-              className="justify-content-end"
-              style={{ marginLeft: "300px" }}
-              onClick={loginLogout}
-            >
-              {isLogin ? "Keluar" : "Masuk"}
-            </Button>
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-      {/* </Container> */}
+          <Button
+            variant="danger"
+            className="justify-content-end"
+            onClick={loginLogout}
+          >
+            {isLogin ? "Keluar" : "Masuk"}
+          </Button>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 }
