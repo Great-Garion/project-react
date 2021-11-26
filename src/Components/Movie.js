@@ -2,13 +2,7 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { MovieContext } from "../Context/MovieProvider";
-import {
-  Card,
-  Button,
-  Row,
-  Col,
-} from "react-bootstrap";
-import Carousel from "react-bootstrap/Carousel";
+import { Card, Button, Row, Col } from "react-bootstrap";
 function Movie() {
   let { movieList, setMovieList } = useContext(MovieContext);
   let history = useHistory();
@@ -27,50 +21,6 @@ function Movie() {
 
   return (
     <div style={{ backgroundColor: "#EEC4C4" }}>
-      {/* <Carousel fade style={{ marginTop: "7vw" }}>
-        <Carousel.Item>
-    <div style={{ backgroundColor: "#000000c4" }}>
-      <Carousel fade style={{ marginTop: "7vw" ,width:"100%", }}>
-        <Carousel.Item
-       >
-          <img
-            className="d-block w-100 h-50"
-            src={`https://image.tmdb.org/t/p/original${movieList[1]?.backdrop_path}`}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            a<h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/original${movieList[3]?.backdrop_path}`}
-            alt="Second slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/original${movieList[4]?.backdrop_path}`}
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel> */}
-
       <div
         className="d-flex align-content-center flex-wrap bd-highlight example-parent "
         style={{ marginTop: "60px" }}
@@ -89,7 +39,7 @@ function Movie() {
                     }}
                   >
                     <Card.Img
-                    style={{height:"inherit"}}
+                      style={{ height: "inherit" }}
                       // variant="top"
                       src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     />
@@ -100,24 +50,24 @@ function Movie() {
                           color: "black",
                           fontFamily: "cursive",
                           height: "11rem",
-                          borderRadius:"4%",
-                          width:"254px"
+                          borderRadius: "4%",
+                          width: "254px",
                         }}
                       >
-                        <Card.Title><b>{item.title}</b></Card.Title>
+                        <Card.Title>
+                          <b>{item.title}</b>
+                        </Card.Title>
                         <Card.Text>{item.release_date}</Card.Text>
                         <div className="">
-
-                        <Button
-                          style={{ backgroundColor: "#D291BC" }}
-                          onClick={() =>
-                            history.push(`/movie-detail/${item.id}`)
-                          }
-                        >
-                          More Detail
-                        </Button>
+                          <Button
+                            style={{ backgroundColor: "#D291BC" }}
+                            onClick={() =>
+                              history.push(`/movie-detail/${item.id}`)
+                            }
+                          >
+                            More Detail
+                          </Button>
                         </div>
-
                       </Card.Body>
                     </div>
                   </Card>
