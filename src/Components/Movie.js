@@ -54,7 +54,10 @@ function Movie() {
                           width: "254px",
                         }}
                       >
-                        <Card.Title>
+                        <Card.Title style={{
+                          height: "50px",
+                          overflow: "hidden"
+                        }}>
                           <b>{item.title}</b>
                         </Card.Title>
                         <Card.Text>{item.release_date}</Card.Text>

@@ -49,7 +49,10 @@ function Series() {
                           height: "11rem",
                         }}
                       >
-                        <Card.Title>
+                        <Card.Title  style={{
+                          height: "50px",
+                          overflow: "hidden"
+                        }}>
                           <b>{item.name}</b>
                         </Card.Title>
                         <Card.Text>{item.first_air_date}</Card.Text>

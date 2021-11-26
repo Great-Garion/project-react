@@ -10,7 +10,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Navbar, Nav, Button } from "react-bootstrap";
+import { Container, Navbar, Nav, Button, NavLink } from "react-bootstrap";
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
@@ -18,7 +18,7 @@ import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
 import MovieeDetail from "./Components/MovieeDetail";
 import Home from "./Components/Home";
-import Logo from "./logo.png"
+import Logo from "./logo.png";
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
@@ -29,36 +29,147 @@ function App() {
   }
   return (
     <Router>
-      <Navbar
+      <Navbar expand="lg" style={{ backgroundColor: "#93B5C6" }}>
+          <Navbar.Brand className="logo">
+            <img src={Logo} style={{ width: "5rem" }} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link>
+                {isLogin ? (
+                  <Link
+                    to="/Movie"
+                    className="fs-4"
+                    style={{
+                      textDecoration: "none",
+                      color: "blue",
+                      padding: "200px",
+                    }}
+                  >
+                    Movie
+                  </Link>
+                ) : (
+                  <></>
+                )}
+              </Nav.Link>
+              <Nav.Link>
+                {isLogin ? (
+                  <Link
+                    to="/Series"
+                    className="fs-4"
+                    style={{
+                      textDecoration: "none",
+                      color: "blue",
+                      padding: "200px",
+                    }}
+                  >
+                    Series
+                  </Link>
+                ) : (
+                  <></>
+                )}
+              </Nav.Link>
+              <Nav.Link>
+                <Button variant="danger">
+                  {isLogin ? (
+                    <Button
+                      variant="danger"
+                      className="justify-content-end"
+                      style={{ width: "100%" }}
+                      onClick={LogOut}
+                    >
+                      Keluar
+                    </Button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      Masuk
+                    </Link>
+                  )}
+                </Button>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+      </Navbar>
+
+      {/* <Navbar
         fixed="top"
-        style={{ padding: "0px", backgroundColor: "#93B5C6"}}
+        style={{ padding: "0px", backgroundColor: "#93B5C6" }}
       >
         <Container>
-          <Navbar.Brand className="logo"><img src={Logo} style={{width: "5rem"}}/></Navbar.Brand>
-          <Nav className= "justify-content-center" style ={{width: "100%"}}>
+          <Navbar.Brand className="logo">
+            <img src={Logo} style={{ width: "5rem" }} />
+          </Navbar.Brand>
+          <Nav className="justify-content-center" style={{ width: "100%" }}>
             <Nav.Link>
-              {isLogin ? <Link to="/Movie" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Movie</Link> : <></>}
+              {isLogin ? (
+                <Link
+                  to="/Movie"
+                  className="fs-4"
+                  style={{
+                    textDecoration: "none",
+                    color: "blue",
+                    padding: "200px",
+                  }}
+                >
+                  Movie
+                </Link>
+              ) : (
+                <></>
+              )}
             </Nav.Link>
 
             <Nav.Link>
-              {isLogin ? <Link to="/Series" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Series</Link> : <></>}
+              {isLogin ? (
+                <Link
+                  to="/Series"
+                  className="fs-4"
+                  style={{
+                    textDecoration: "none",
+                    color: "blue",
+                    padding: "200px",
+                  }}
+                >
+                  Series
+                </Link>
+              ) : (
+                <></>
+              )}
             </Nav.Link>
           </Nav>
         </Container>
-        <Nav>
-        {/* <Nav.Link><Button variant= "dark">
+        <Nav> */}
+      {/* <Nav.Link><Button variant= "dark">
               {isLogin ?  : <Link  to="/Register" style={{textDecoration:"none"}}>Register</Link>}</Button>
             </Nav.Link> */}
 
-            <Nav.Link> <Button variant= "danger">
+      {/* <Nav.Link>
+            {" "}
+            <Button variant="danger">
               {isLogin ? (
-                <Button  variant= "danger" className= "justify-content-end" style={{width: "100%"}} onClick={LogOut}>Keluar</Button>
+                <Button
+                  variant="danger"
+                  className="justify-content-end"
+                  style={{ width: "100%" }}
+                  onClick={LogOut}
+                >
+                  Keluar
+                </Button>
               ) : (
-                <Link to="/login" style={{textDecoration:"none", color: "white"}}>Masuk</Link>
-              )}</Button>
-            </Nav.Link>
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Masuk
+                </Link>
+              )}
+            </Button>
+          </Nav.Link>
         </Nav>
-      </Navbar>
+      </Navbar> */}
 
       <Switch>
         <Route exact path="/">
@@ -76,7 +187,7 @@ function App() {
         </Route>
 
         <Route path="/movie-detail/:id">
-         <MovieeDetail />
+          <MovieeDetail />
         </Route>
 
         <Route path="/series">
