@@ -4,6 +4,7 @@ import { Form, Col, Button, Row, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { UserContext } from "../Context/UserProvider";
+import { Link } from "react-router-dom";
 
 function Register() {
   let history = useHistory();
@@ -185,7 +186,7 @@ function Register() {
         <div style={{display: "grid"}}>
           <Button onClick={handleChangebutton}>Daftar</Button>
           <p className="forgot-password text-right" style={{textAlign:"center"}}>
-            Already registered <a href="/login">log in?</a>
+            Already registered <Link to="/login">log in?</Link>
           </p>
         </div>
         </Form>

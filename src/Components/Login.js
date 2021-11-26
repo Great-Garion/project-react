@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { UserContext } from "../Context/UserProvider";
 import "../Components/styling.css";
+import { Link } from "react-router-dom";
 // import GoogleLogin from "react-google-login";
 
 function Login() {
@@ -93,9 +94,9 @@ function Login() {
               <button class="cta">
                 <span class="hover-underline-animation">
                   {" "}
-                  <a href="/Register" style={{ textDecoration: "none" }}>
+                  <Link to="/register" style={{ textDecoration: "none" }}>
                     Register Now{" "}
-                  </a>
+                  </Link>
                 </span>
                 <svg
                   id="arrow-horizontal"
