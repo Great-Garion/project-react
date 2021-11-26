@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -8,14 +9,15 @@ import MovieProvider from "./Context/MovieProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MovieProvider>
-    <UserProvider>
+    <Router>
       <MovieProvider>
-        <App />
+        <UserProvider>
+          <MovieProvider>
+            <App />
+          </MovieProvider>
+        </UserProvider>
       </MovieProvider>
-    </UserProvider>
-    </MovieProvider>
-   
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
