@@ -9,9 +9,6 @@ import Logo from "../logo.png";
 function Navigasi() {
   const history = useHistory();
   let { isLogin, setIsLogin } = useContext(UserContext);
-  console.log(isLogin);
-
-  console.log(history);
 
   function loginLogout() {
     if (isLogin) {
