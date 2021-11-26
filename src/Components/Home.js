@@ -25,7 +25,7 @@ function Home() {
   }, []);
   return (
     <div>
-      <h2>Selamat Datang</h2>
+      {/* <h2>Selamat Datang</h2> */}
       <div
         id="carouselExampleSlidesOnly"
         className="carousel slide"
