@@ -29,8 +29,12 @@ function Movie() {
     <div style={{ backgroundColor: "#EEC4C4" }}>
       {/* <Carousel fade style={{ marginTop: "7vw" }}>
         <Carousel.Item>
+    <div style={{ backgroundColor: "#000000c4" }}>
+      <Carousel fade style={{ marginTop: "7vw" ,width:"100%", }}>
+        <Carousel.Item
+       >
           <img
-            className="d-block w-100"
+            className="d-block w-100 h-50"
             src={`https://image.tmdb.org/t/p/original${movieList[1]?.backdrop_path}`}
             alt="First slide"
           />
@@ -85,6 +89,7 @@ function Movie() {
                     }}
                   >
                     <Card.Img
+                    style={{height:"inherit"}}
                       // variant="top"
                       src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     />
@@ -95,11 +100,14 @@ function Movie() {
                           color: "black",
                           fontFamily: "cursive",
                           height: "11rem",
+                          borderRadius:"4%",
+                          width:"254px"
                         }}
                       >
                         <Card.Title><b>{item.title}</b></Card.Title>
                         <Card.Text>{item.release_date}</Card.Text>
                         <div className="">
+
                         <Button
                           style={{ backgroundColor: "#D291BC" }}
                           onClick={() =>
@@ -109,6 +117,7 @@ function Movie() {
                           More Detail
                         </Button>
                         </div>
+
                       </Card.Body>
                     </div>
                   </Card>
