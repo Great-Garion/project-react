@@ -1,175 +1,107 @@
 import "./App.css";
-import Movie from "./Components/Movie";
-import Register from "./Components/Register";
-import Series from "./Components/Series";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useContext } from "react";
+import { Container, Navbar, Nav, Button, NavLink } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect,
+  useHistory,
 } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Navbar, Nav, Button, NavLink } from "react-bootstrap";
+
+import Movie from "./Components/Movie";
+import Register from "./Components/Register";
+import Series from "./Components/Series";
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
-import { useContext } from "react";
-import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
 import MovieeDetail from "./Components/MovieeDetail";
 import Home from "./Components/Home";
+import { UserContext } from "./Context/UserProvider";
+
 import Logo from "./logo.png";
+
 function App() {
+  const history = useHistory();
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
 
-  function LogOut() {
-    setIsLogin(false);
-    localStorage["isLogin"] = false;
+  console.log(history);
+
+  function loginLogout() {
+    if (isLogin) {
+      // melakukan logout
+      setIsLogin(false);
+      localStorage["isLogin"] = false;
+    } else {
+      // pindah ke halaman login
+      history.push("/login");
+    }
   }
+
   return (
-    <Router>
+    <>
       <Navbar expand="lg" style={{ backgroundColor: "#93B5C6" }}>
+        {/* <Container> */}
           <Navbar.Brand className="logo">
             <img src={Logo} style={{ width: "5rem" }} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-auto">
+              {/* movie */}
+
               <Nav.Link>
-                {isLogin ? (
+                {isLogin && (
                   <Link
-                    to="/Movie"
+                    to="/movie"
                     className="fs-4"
                     style={{
                       textDecoration: "none",
                       color: "blue",
-                      padding: "200px",
+                      // paddingRight: "200px",
                     }}
                   >
                     Movie
                   </Link>
-                ) : (
-                  <></>
                 )}
               </Nav.Link>
+
+              {/* serries */}
               <Nav.Link>
-                {isLogin ? (
+                {isLogin && (
                   <Link
-                    to="/Series"
+                    to="/series"
                     className="fs-4"
                     style={{
                       textDecoration: "none",
                       color: "blue",
-                      padding: "200px",
+                      marginLeft: "300px",
                     }}
                   >
                     Series
                   </Link>
-                ) : (
-                  <></>
                 )}
               </Nav.Link>
+
+              {/* keluar */}
               <Nav.Link>
-                <Button variant="danger">
-                  {isLogin ? (
-                    <Button
-                      variant="danger"
-                      className="justify-content-end"
-                      style={{ width: "100%" }}
-                      onClick={LogOut}
-                    >
-                      Keluar
-                    </Button>
-                  ) : (
-                    <Link
-                      to="/login"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      Masuk
-                    </Link>
-                  )}
+                <Button
+                  variant="danger"
+                  className="justify-content-end"
+                  style={{ marginLeft: "300px", }}
+                  onClick={loginLogout}
+                >
+                  {isLogin ? "Keluar" : "Masuk"}
                 </Button>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+        {/* </Container> */}
       </Navbar>
-
-      {/* <Navbar
-        fixed="top"
-        style={{ padding: "0px", backgroundColor: "#93B5C6" }}
-      >
-        <Container>
-          <Navbar.Brand className="logo">
-            <img src={Logo} style={{ width: "5rem" }} />
-          </Navbar.Brand>
-          <Nav className="justify-content-center" style={{ width: "100%" }}>
-            <Nav.Link>
-              {isLogin ? (
-                <Link
-                  to="/Movie"
-                  className="fs-4"
-                  style={{
-                    textDecoration: "none",
-                    color: "blue",
-                    padding: "200px",
-                  }}
-                >
-                  Movie
-                </Link>
-              ) : (
-                <></>
-              )}
-            </Nav.Link>
-
-            <Nav.Link>
-              {isLogin ? (
-                <Link
-                  to="/Series"
-                  className="fs-4"
-                  style={{
-                    textDecoration: "none",
-                    color: "blue",
-                    padding: "200px",
-                  }}
-                >
-                  Series
-                </Link>
-              ) : (
-                <></>
-              )}
-            </Nav.Link>
-          </Nav>
-        </Container>
-        <Nav> */}
-      {/* <Nav.Link><Button variant= "dark">
-              {isLogin ?  : <Link  to="/Register" style={{textDecoration:"none"}}>Register</Link>}</Button>
-            </Nav.Link> */}
-
-      {/* <Nav.Link>
-            {" "}
-            <Button variant="danger">
-              {isLogin ? (
-                <Button
-                  variant="danger"
-                  className="justify-content-end"
-                  style={{ width: "100%" }}
-                  onClick={LogOut}
-                >
-                  Keluar
-                </Button>
-              ) : (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  Masuk
-                </Link>
-              )}
-            </Button>
-          </Nav.Link>
-        </Nav>
-      </Navbar> */}
 
       <Switch>
         <Route exact path="/">
@@ -204,7 +136,7 @@ function App() {
           <Alihan />
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 }
 
