@@ -2,7 +2,6 @@ import "./App.css";
 import Movie from "./Components/Movie";
 import Register from "./Components/Register";
 import Series from "./Components/Series";
-import MovieDetail from "./Components/MovieDetail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,23 +10,15 @@ import {
   Redirect,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Form,
-  Offcanvas,
-  FormControl,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import Login from "./Components/Login";
 import Alihan from "./Components/Alihan";
 import { useContext } from "react";
 import { UserContext } from "./Context/UserProvider";
 import SeriesDetail from "./Components/SeriesDetail";
-
-
+import MovieeDetail from "./Components/MovieeDetail";
+import Home from "./Components/Home";
+import Logo from "./logo.png"
 function App() {
   let { isLogin, setIsLogin } = useContext(UserContext);
   console.log(isLogin);
@@ -38,90 +29,40 @@ function App() {
   }
   return (
     <Router>
+      <Navbar
+        fixed="top"
+        style={{ padding: "0px", backgroundColor: "#93B5C6"}}
+      >
+        <Container>
+          <Navbar.Brand className="logo"><img src={Logo} style={{width: "5rem"}}/></Navbar.Brand>
+          <Nav className= "justify-content-center" style ={{width: "100%"}}>
+            <Nav.Link>
+              {isLogin ? <Link to="/Movie" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Movie</Link> : <></>}
+            </Nav.Link>
 
-      <Navbar fixed="top" bg="light" expand={false}>
-
-        <Container fluid>
-          <Navbar.Brand>
-            <h2>Garion_TV</h2>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar" />
-          <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">
-                Garion_TV
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link>
-                  {isLogin ? (
-                    <></>
-                  ) : (
-                    <Link to="/Register" className="me-5">
-                      Register
-                    </Link>
-                  )}
-                </Nav.Link>
-
-                <Nav.Link>
-                  {isLogin ? (
-                    <Button onClick={LogOut}>Log Out</Button>
-                  ) : (
-                    <Link to="/login" className="me-5">
-                      Login
-                    </Link>
-                  )}
-                </Nav.Link>
-
-                <Nav.Link>
-                  {isLogin ? (
-                    <Link to="/Movie" className="me-5">
-                      Movie
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
-                </Nav.Link>
-                <Nav.Link>
-                  {isLogin ? (
-                    <Link to="/Series" className="me-5">
-                      Series
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
-                </Nav.Link>
-                {isLogin ? (
-                  <NavDropdown title="Contact" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="#email">Email</NavDropdown.Item>
-                    <NavDropdown.Item href="#instagram">
-                      Instagram
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#favebook">
-                      Facebook
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#whatsApp">
-                      whatsApp
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                  </NavDropdown>
-                ) : (
-                  <></>
-                )}
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
+            <Nav.Link>
+              {isLogin ? <Link to="/Series" className="fs-4" style={{textDecoration:"none", color: "blue", padding: "200px"}}>Series</Link> : <></>}
+            </Nav.Link>
+          </Nav>
         </Container>
+        <Nav>
+        {/* <Nav.Link><Button variant= "dark">
+              {isLogin ?  : <Link  to="/Register" style={{textDecoration:"none"}}>Register</Link>}</Button>
+            </Nav.Link> */}
+
+            <Nav.Link> <Button variant= "danger">
+              {isLogin ? (
+                <Button  variant= "danger" className= "justify-content-end" style={{width: "100%"}} onClick={LogOut}>Keluar</Button>
+              ) : (
+                <Link to="/login" style={{textDecoration:"none", color: "white"}}>Masuk</Link>
+              )}</Button>
+            </Nav.Link>
+        </Nav>
       </Navbar>
 
       <Switch>
         <Route exact path="/">
-          {isLogin ? <Movie /> : <Redirect to="/login" />}
+          {isLogin ? <Home /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/register">
@@ -133,22 +74,20 @@ function App() {
         <Route path="/movie">
           {isLogin ? <Movie /> : <Redirect to="/login" />}
         </Route>
+
         <Route path="/movie-detail/:id">
-          <MovieDetail />
+         <MovieeDetail />
         </Route>
 
         <Route path="/series">
           {isLogin ? <Series /> : <Redirect to="/login" />}
         </Route>
         <Route path="/series-detail/:id">
-
           <SeriesDetail />
         </Route>
 
-
-
         <Route path="/movie-detail/:id">
-          <MovieDetail />
+          <MovieeDetail />
         </Route>
         <Route path="/:alihan">
           <Alihan />

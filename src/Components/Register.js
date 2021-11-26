@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Col, Button, Row, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
@@ -7,7 +7,7 @@ import { UserContext } from "../Context/UserProvider";
 
 function Register() {
   let history = useHistory();
-  let {isReg, setIsReg} = useContext(UserContext)
+  let { isReg, setIsReg } = useContext(UserContext);
   let [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -39,24 +39,20 @@ function Register() {
         setDataApiRegis(res);
       });
     history.push("/Login");
-    setIsReg(true)
+    setIsReg(true);
   };
 
   const handleChangebutton = (e) => {
     e.preventDefault();
-    // const userJSON = JSON.stringify(user);
-    // console.log(userJSON);
-    // localStorage.setItem("user", userJSON);
-    // console.log(user);
     submitData();
   };
   // console.log(dataApiRegis)
   return (
-    <div className="Register">
-      <h3>Halaman Register</h3>
-      <Container>
-        <Form 
-        >
+    <div className="Register" style={{marginTop: "7rem", marginBottom: "2rem"}}>
+      <Container style={{width: "50%"}}>
+        <Form>
+          <h3 style={{textAlign: "center"}}>Register</h3>
+
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
               FirstName
@@ -186,8 +182,12 @@ function Register() {
               />
             </Col>
           </Form.Group>
-
+        <div style={{display: "grid"}}>
           <Button onClick={handleChangebutton}>Daftar</Button>
+          <p className="forgot-password text-right" style={{textAlign:"center"}}>
+            Already registered <a href="/login">log in?</a>
+          </p>
+        </div>
         </Form>
       </Container>
     </div>
